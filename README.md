@@ -9,7 +9,7 @@
 [لینک مثال ساده](https://github.com/abbas-oveissi/SimpleRetrofitSample/tree/master)
 
 
-مثال دوم کاملتر هست و جزئیات بیشتری در آن لحاظ شده است.
+مثال اول ساده تر است تا کسانی که فقط میخواهند با والی آشنا شوند،از آن استفاده کنند.
 
 [لینک مثال پیشرفته تر ](https://github.com/abbas-oveissi/SimpleRetrofitSample/tree/advanced)
 
