@@ -9,6 +9,7 @@ import android.widget.Toast;
 import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
 
+import ir.oveissi.simpleretrofitsample.Constants;
 import ir.oveissi.simpleretrofitsample.R;
 import ir.oveissi.simpleretrofitsample.data.ApiClient;
 import ir.oveissi.simpleretrofitsample.data.ApiInterface;
@@ -46,18 +47,22 @@ public class DetailActivity extends AppCompatActivity {
     private void get_data_from_webservice(String movie_id) {
 
         Call<DetailMovie> call=
-                ApiClient.getClient().create(ApiInterface.class).getDetailMovieByID(movie_id,"short","json");
+                ApiClient.getClient().create(ApiInterface.class).getDetailMovieByID(Constants.API_KEY,movie_id,"short","json");
         call.enqueue(new Callback<DetailMovie>() {
             @Override
             public void onResponse(Call<DetailMovie> call, Response<DetailMovie> response) {
-                tvTitle.setText(response.body().Title);
-                tvRate.setText(response.body().Rated);
-                tvRuntime.setText(response.body().Runtime);
-                tvDirector.setText(response.body().Director);
-                Picasso.with(DetailActivity.this)
-                        .load(response.body().Poster)
-                        .placeholder(R.drawable.placeholder)
-                        .into(imPoster);
+                if(response.isSuccessful())
+                {
+                    tvTitle.setText(response.body().Title);
+                    tvRate.setText(response.body().Rated);
+                    tvRuntime.setText(response.body().Runtime);
+                    tvDirector.setText(response.body().Director);
+                    Picasso.with(DetailActivity.this)
+                            .load(response.body().Poster)
+                            .placeholder(R.drawable.placeholder)
+                            .into(imPoster);
+                }
+
             }
 
             @Override

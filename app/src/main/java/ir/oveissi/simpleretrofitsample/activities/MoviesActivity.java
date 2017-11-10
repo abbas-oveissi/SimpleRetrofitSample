@@ -10,6 +10,7 @@ import com.google.gson.Gson;
 
 import java.util.ArrayList;
 
+import ir.oveissi.simpleretrofitsample.Constants;
 import ir.oveissi.simpleretrofitsample.R;
 import ir.oveissi.simpleretrofitsample.adapters.MoviesAdapter;
 import ir.oveissi.simpleretrofitsample.data.ApiClient;
@@ -39,14 +40,18 @@ public class MoviesActivity extends AppCompatActivity {
     private void get_data_from_webservice() {
 
         Call<TmpMovies> call=
-                ApiClient.getClient().create(ApiInterface.class).getMoviesByTitle("batman",1);
+                ApiClient.getClient().create(ApiInterface.class).getMoviesByTitle(Constants.API_KEY,"batman",1);
         call.enqueue(new Callback<TmpMovies>() {
             @Override
             public void onResponse(Call<TmpMovies> call, Response<TmpMovies> response) {
-                for(Movie m:response.body().Search)
+                if(response.isSuccessful())
                 {
-                    mListAdapter.addItem(m);
+                    for(Movie m:response.body().Search)
+                    {
+                        mListAdapter.addItem(m);
+                    }
                 }
+
             }
 
             @Override
