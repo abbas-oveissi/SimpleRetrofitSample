@@ -11,10 +11,10 @@ import retrofit2.http.Query;
  */
 public interface ApiInterface {
         @GET("?")
-        Call<TmpMovies> getMoviesByTitle(@Query("s") String title, @Query("page") int page);
+        Call<TmpMovies> getMoviesByTitle(@Query("apikey") String api,@Query("s") String title, @Query("page") int page);
 
         @GET("?")
-        Call<DetailMovie> getDetailMovieByID(@Query("i") String movie_id,
+        Call<DetailMovie> getDetailMovieByID(@Query("apikey") String api,@Query("i") String movie_id,
                                              @Query("plot") String plot,
                                              @Query("r") String r);
 
